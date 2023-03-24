@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Formulario</title>
+</head>
+<body>
+	<div style="margin: 24px;">
+	<nav class="navbar navbar-light" style="background-color: #996888;">
+			<div class="container">
+				<a class="navbar-brand" href="/">Inicio</a>
+				<ul class="nav navbar-nav">
+					<li>
+					    <a href="menu.html">Menu</a>
+					</li>
+					<li class="active">
+					     <a herf="formulario.html">Formulario</a>
+					</li>
+					<li>
+					    <a href="resultado.html">Resultado</a>
+					</li>
+					<li>
+					     <a herf="contacto.html">Contacto</a>
+					</li>
+				</ul>
+            </div>
+        </nav>    
+
+    <div> 
+  <h1>Formulario</h1>
+   <table>
+   	 <form action="pedidorealizado.html" method="get">
+   	 <p>nombre: <input type="text" name="nombre" id="nombre" size="80">
+   	 </p>
+   	 <p>apellido: <input type="text" name="apellido" id="apellido" size="80">
+   	 </p>
+   	 <p>direccion: <input type="text" name="direccion" id="direccion" size="80">
+   	 </p>
+   	 <p>colonia: <input type="text" name="colonia" id="colonia" size="80">
+   	 </p>
+   	 <p>telefono: <input type="text" name="telefono" id="telefono" size="80">
+   	 </p>
+  <p> Que vas a pedir
+ <select name="menu" id="menu">
+ 	<optgroup label="Comida">
+ 		<option value="hamburgesa">Hamburgesa</option>
+ 		<option value="tacos pirata">tacos pirata</option>
+ 		<option value="hot dog">Hot dog</option>
+ 		<option value="papa asada">papa asada</option>
+ 		<option value="pizza">pizza</option>
+ 		<option value="sincronizada">sincronizada</option>
+
+<optgroup label="Bebidas">
+	<option value="agua">agua </option>
+	<option value="limonada">limonada</option>
+	<option value="refresco">refresco</option>
+
+<optgroup label="Postres">
+    <option value="pastel de chocolate">Pastel de chocolate </option>
+    <option value="Nieve de fresa">Nieve de fresa</option>
+    </optgroup>
+  </select>
+  <hr>
+  <h1 style="color: blue;">Complementos<h1>
+  	<input type="checkbox" id="tomate" checked><label for="tomate" style="
+  	font-size: 20px;">Tomate</label><br>
+  	<input type="checkbox" id="pina" checked><label for="pina" style="
+  	font-size: 20px;">Pina</label><br>
+  	<input type="checkbox" id="queso" checked><label for="queso" style="
+  	font-size: 20px;">Queso</label><br>
+  	<input type="checkbox" id="cebolla" checked><label for="cebolla" style="
+  	font-size: 20px;">Cebolla</label><br>
+     </p>
+<input type="submit" value="Pedido">
+<input type="reset" value="Borrar">
+</form>
+<script type="text/javascript">  
+   const form=document.getElementById("Pedido");
+   form.addEventlLstener("submit", function(event){
+   	event.preventDefault();
+   	const formData=new FormData(form);
+   	const orden={
+   		nombre:formData.get("nombre"),
+   		nombre:formData.get("apellido"),
+   		nombre:formData.get("telefono"),
+   		nombre:formData.get("direccion"),
+   		nombre:formData.get("colonia"),
+   		nombre:formData.get("telefono"),
+   		nombre:formData.get("menu")
+   		tomate:document.getElementById("tomate").checked ? "si" : "No",
+   		pina:document.getElementById("pina").checked ? "si" : "No",
+   		queso:document.getElementById("queso").checked ? "si" : "No",
+   		cebolla:document.getElementById("cebolla").checked ? "si" : "No"
+   	};
+   	localStorage.setItem("orden",JSON.stringify(orden));
+   	window.location.href="pedidorealizado.html";
+   });
+   </script>
+</body>
+</html>        

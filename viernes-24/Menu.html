@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Menu</title>
+</head>
+<body>
+	<div style="margin: 24px;">
+		<nav class="navbar navbar-light" style="background-color: #996888;">
+			<div class="container">
+				<a class="navbar-brand" href="/">Inicio</a>
+				<ul class="nav navbar-nav">
+					<li class="active">
+					    <a href="menu.html">Menu</a>
+					</li>
+					<li>
+					     <a herf="formulario.html">Formulario</a>
+					</li>
+					<li>
+					    <a href="resultado.html">Resultado</a>
+					</li>
+					<li> 
+					     <a herf="contacto.html">contacto</a>
+					</li>
+				</ul>
+            </div>
+        </nav>    
+   <div>
+   <titulo> MENU DEL RESTAURANTE </titulo>
+
+<div id="menu"></div>
+<script type="text/javascript">
+fetch('menu.json')
+.then(response=>response.json())
+.then(data=>{
+   const tabla = document.createElement('table');
+   tabla.innerHTML=`
+   <thead> 
+   <tr>
+       <th>Categoria</th>
+       <th>Imagen</th>
+       <th>Producto</th>
+       <th>Descripcion</th>
+       <th>Precio</th>
+       <th>Seleccion</th>
+   </tr> 
+   </thead>
+   <tbody>
+   </tbody>
+   `;
+   document.getElementById('menu').appendChild(
+    tabla);
+      //
+   Object.keys(dat).forEach(categoria =>  {
+    data[categoria].forEach(producto  =>   {
+   const fila = document.createElement('tr');
+   fila.innerHTML =`
+   <td> ${categoria} </td> 
+   <td><img src= ${producto.imagen}" alt=${producto.name}"></td> 
+   <td> ${producto.nombre} </td> 
+   <td> ${producto.descripcion} </td> 
+   <td> ${producto.precio} </td> 
+   <td><input type="checkbox" class="producto"
+   data-precio="${producto.precio}"></td> 
+   `;
+   tabla.querySelector('tbody').appendCild(fila);
+
+  });
+
+});
+   //esta es la parte del codigo que raliza la suma
+   const productos = document.querySelectorAll('.producto');
+   productos.foreach(producto => {
+    producto.addEventListenner('change',()  => {
+      if(producto.checcked){
+        suma +=parseFloat(producto.dataset.precio);
+        }
+        });
+    document.getElemnetById('resultado').innerHTML=`
+    <h1>TOTAL:  $${suma.toFixed(2)}</h1>
+    });
+  });
+
+  </script>  
+ </body> 
+</html>        
+
+
+
